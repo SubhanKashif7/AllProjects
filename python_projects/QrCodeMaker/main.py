@@ -7,4 +7,4 @@ qr = qrcode.make(data);
 qr.save(filename)
 
 
-print(f"QR CODE SAVED AS {filename}")
+print(f"QR CODE SAVED AS {filename}") # completed
