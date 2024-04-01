@@ -1,30 +1,13 @@
-'use client'
-
 import React from 'react'
 import { Menu, X } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 
 const menuItems = [
-  {
-    name: 'Home',
-    to: '/',
-  },
-  {
-    name: 'About',
-    to: '/about',
-  },
-  {
-    name: 'Contact',
-    to: '/contact',
-  },
-  {
-    name : "Projects",
-    to : "/projects"
-  },
-  {
-    name : "UI",
-    to : "/ui"
-  }
+  { name: 'Home', to: '/' },
+  { name: 'About', to: '/about' },
+  { name: 'Contact', to: '/contact' },
+  { name: 'Projects', to: '/projects' },
+  { name: 'UI', to: '/ui' },
 ]
 
 export default function Header() {
@@ -32,6 +15,10 @@ export default function Header() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
   }
 
   return (
@@ -46,9 +33,8 @@ export default function Header() {
               <li key={item.name}>
                 <NavLink
                   to={item.to}
-                  exact
-                  activeClassName="text-[#76ABAE]"
                   className="text-sm font-semibold text-[#EEEEEE] hover:text-[#76ABAE]"
+                  onClick={closeMenu} // Close menu when a menu item is clicked
                 >
                   {item.name}
                 </NavLink>
@@ -65,7 +51,18 @@ export default function Header() {
           </button>
         </div>
         <div className="lg:hidden">
-          <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer text-[#79aeb1]" />
+          <button
+            type="button"
+            onClick={toggleMenu}
+            className="text-[#79aeb1] focus:outline-none"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
         </div>
         {isMenuOpen && (
           <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
@@ -73,7 +70,7 @@ export default function Header() {
               <div className="px-5 pb-6 pt-5">
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center space-x-2">
-                    <h1 className='text-lg font-bold text-[#EEEE]'>AllProjects - WebHome</h1>
+                    <h1 className="text-lg font-bold text-[#EEEE]">AllProjects - WebHome</h1>
                   </div>
                   <div className="-mr-2">
                     <button
@@ -92,9 +89,8 @@ export default function Header() {
                       <NavLink
                         key={item.name}
                         to={item.to}
-                        exact
-                        activeClassName="text-[#76ABAE]"
                         className="text-sm font-semibold text-[#EEEEEE] hover:text-[#76ABAE]"
+                        onClick={closeMenu} // Close menu when a menu item is clicked
                       >
                         {item.name}
                       </NavLink>
